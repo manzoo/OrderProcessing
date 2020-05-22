@@ -1,7 +1,8 @@
-﻿using OrderProcessing.Dto;
+﻿using OrderProcessing.BusinessRule.Contracts;
+using OrderProcessing.Dto;
 using System;
 
-namespace OrderProcessing.BusinessRule.Contracts
+namespace OrderProcessing.BusinessRule.Implementations
 {
     public class MembershipManager : IMembershipManager
     {
