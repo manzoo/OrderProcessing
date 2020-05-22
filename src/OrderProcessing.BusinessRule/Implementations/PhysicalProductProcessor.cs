@@ -13,9 +13,14 @@ namespace OrderProcessing.BusinessRule.Implementations
         }
         public override OrderStatus Process(OrderDto order)
         {
-            _printer.Print("The product is booked");
+            if (order.ProductType == ProductType.Physical)
+            {
+                _printer.Print("The product is booked");
 
-            return OrderStatus.Success;
+                return OrderStatus.Success;
+            }
+
+            return base
         }
     }
 }

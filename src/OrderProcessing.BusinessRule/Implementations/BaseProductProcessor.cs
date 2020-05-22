@@ -5,16 +5,21 @@ namespace OrderProcessing.BusinessRule.Implementations
 {
     public abstract class BaseProductProcessor : IOrderProcessor
     {
-        private IOrderProcessor Next;
+        private IOrderProcessor _next;
         public virtual OrderStatus Process(OrderDto order)
         {
-            throw new System.NotImplementedException();
+           if(_next != null)
+            {
+                return _next.Process(order);
+            }
+
+            return OrderStatus.Pending;
         }
 
         public IOrderProcessor SetNext(IOrderProcessor next)
         {
-            Next = next;
-            return Next;
+            _next = next;
+            return _next;
         }
     }
 }
