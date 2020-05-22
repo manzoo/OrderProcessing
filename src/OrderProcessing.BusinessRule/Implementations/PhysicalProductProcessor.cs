@@ -3,7 +3,7 @@ using OrderProcessing.Dto;
 
 namespace OrderProcessing.BusinessRule.Implementations
 {
-    public class PhysicalProductProcessor
+    public class PhysicalProductProcessor : BaseProductProcessor
     {
         private readonly IPrinter _printer;
 
@@ -11,7 +11,7 @@ namespace OrderProcessing.BusinessRule.Implementations
         {
             _printer = printer;
         }
-        public OrderStatus Process(OrderDto order)
+        public override OrderStatus Process(OrderDto order)
         {
             _printer.Print("The product is booked");
 
