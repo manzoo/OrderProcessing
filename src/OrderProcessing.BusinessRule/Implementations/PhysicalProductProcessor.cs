@@ -20,7 +20,7 @@ namespace OrderProcessing.BusinessRule.Implementations
                 return OrderStatus.Success;
             }
 
-            return base
+            return base.Process(order);
         }
     }
 }
