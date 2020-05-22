@@ -7,17 +7,18 @@ using OrderProcessing.Dto;
 namespace OrderProcessing.BusinessRule.Tests
 {
     [TestClass]
-    public class PhysicalProductProcessorTests
+    public class MembershipProcessorTests
     {
 
         [TestMethod]
-        public void PhysicalProductProcessor_Process_ShouldNotProcessTheOrder_WhenOrderIsForOtherThanPhysicalProduct()
+        public void MembershipProcessor_Process_ShouldNotProcessTheOrder_WhenOrderIsForOtherThanMembership()
         {
-            var processor = new PhysicalProductProcessor(new ConsolePrinter());
+            var membershipManagerMock = new Mock<IMembershipManager>();
+            var processor = new MembershipProcessor(membershipManagerMock.Object);
 
             var order = new OrderDto
             {
-                ProductType = ProductType.Video,
+                ProductType = ProductType.Physical,
                 Amount = 100,
                 Agent = new AgentDto
                 {
@@ -32,14 +33,16 @@ namespace OrderProcessing.BusinessRule.Tests
             Assert.AreEqual(OrderStatus.Pending, result);
 
         }
+
         [TestMethod]
-        public void PhysicalProductProcessor_Process_ShouldProcessTheOrder_WhenOrderIsForPhysicalProduct()
+        public void MembershipProcessor_Process_ShouldProcessTheOrder_WhenOrderIsForMembership()
         {
-            var processor = new PhysicalProductProcessor(new ConsolePrinter());
+            var membershipManagerMock = new Mock<IMembershipManager>();
+            var processor = new MembershipProcessor(membershipManagerMock.Object);
 
             var order = new OrderDto
             {
-                ProductType = ProductType.Physical,
+                ProductType = ProductType.Membership,
                 Amount = 100,
                 Agent = new AgentDto
                 {
@@ -56,16 +59,16 @@ namespace OrderProcessing.BusinessRule.Tests
         }
 
         [TestMethod]
-        public void PhysicalProductProcessor_Process_ShouldPrintShippingSlip_WhenOrderIsValid()
+        public void MembershipProcessor_Process_ShouldActivateMembership_WhenOrderIsForMembership()
         {
-            var printerMock = new Mock<IPrinter>();
-            printerMock.Setup(a => a.Print(It.IsAny<string>()));
+            var membershipManagerMock = new Mock<IMembershipManager>();
+            membershipManagerMock.Setup(a => a.Activate(It.IsAny<MembershipDto>()));
 
-            var processor = new PhysicalProductProcessor(printerMock.Object);
+            var processor = new MembershipProcessor(membershipManagerMock.Object);
 
             var order = new OrderDto
             {
-                ProductType = ProductType.Physical,
+                ProductType = ProductType.Membership,
                 Amount = 100,
                 Agent = new AgentDto
                 {
@@ -77,7 +80,8 @@ namespace OrderProcessing.BusinessRule.Tests
 
             var result = processor.Process(order);
 
-            printerMock.Verify(a => a.Print(It.IsAny<string>()), Times.Once);
+            membershipManagerMock.Verify(a => a.Activate(It.IsAny<MembershipDto>()), Times.Once);
+
         }
     }
 }

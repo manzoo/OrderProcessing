@@ -11,7 +11,7 @@ namespace OrderProcessing.BusinessRule.Tests
     {
 
         [TestMethod]
-        public void BookProcessorTests_Process_ShouldNotProcessTheOrder_WhenOrderIsForOtherThanBook()
+        public void BookProcessor_Process_ShouldNotProcessTheOrder_WhenOrderIsForOtherThanBook()
         {
             var printerMock = new Mock<IPrinter>();
             var paymentMock = new Mock<IPaymentManager>();
@@ -60,7 +60,7 @@ namespace OrderProcessing.BusinessRule.Tests
         }
 
         [TestMethod]
-        public void PhysicalProductProcessor_Process_ShouldPrint2Slips_WhenOrderIsValid()
+        public void BookProcessor_Process_ShouldPrint2Slips_WhenOrderIsValid()
         {
             var printerMock = new Mock<IPrinter>();
             printerMock.Setup(a => a.Print(It.IsAny<string>()));
@@ -70,7 +70,7 @@ namespace OrderProcessing.BusinessRule.Tests
 
             var order = new OrderDto
             {
-                ProductType = ProductType.Video,
+                ProductType = ProductType.Book,
                 Amount = 100,
                 Agent = new AgentDto
                 {
@@ -86,7 +86,7 @@ namespace OrderProcessing.BusinessRule.Tests
         }
 
         [TestMethod]
-        public void PhysicalProductProcessor_Process_ShouldPayComissionToAgent_WhenOrderIsValid()
+        public void BookProcessor_Process_ShouldPayComissionToAgent_WhenOrderIsValid()
         {
             var printerMock = new Mock<IPrinter>();
             printerMock.Setup(a => a.Print(It.IsAny<string>()));
@@ -97,7 +97,7 @@ namespace OrderProcessing.BusinessRule.Tests
 
             var order = new OrderDto
             {
-                ProductType = ProductType.Video,
+                ProductType = ProductType.Book,
                 Amount = 100,
                 Agent = new AgentDto
                 {
