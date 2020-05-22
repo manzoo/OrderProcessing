@@ -5,9 +5,9 @@ namespace OrderProcessing.BusinessRule.Implementations
 {
     public class MembershipProcessor: BaseProductProcessor
     {
-        private readonly IMembershipManager _membershipManager;
+        private readonly MembershipManager _membershipManager;
 
-        public MembershipProcessor(IMembershipManager membershipManager)
+        public MembershipProcessor(MembershipManager membershipManager)
         {
             _membershipManager = membershipManager;
         }

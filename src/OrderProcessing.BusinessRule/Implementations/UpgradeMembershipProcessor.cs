@@ -5,10 +5,10 @@ namespace OrderProcessing.BusinessRule.Implementations
 {
     public class UpgradeMembershipProcessor: BaseProductProcessor
     {
-        private readonly IMembershipManager _membershipManager;
-        private readonly IEmailHandler _emailHandler;
+        private readonly MembershipManager _membershipManager;
+        private readonly EmailHandler _emailHandler;
 
-        public UpgradeMembershipProcessor(IMembershipManager membershipManager, IEmailHandler emailHandler)
+        public UpgradeMembershipProcessor(MembershipManager membershipManager, EmailHandler emailHandler)
         {
             _membershipManager = membershipManager;
             _emailHandler = emailHandler;

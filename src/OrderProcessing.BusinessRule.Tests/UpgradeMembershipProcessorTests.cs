@@ -13,10 +13,10 @@ namespace OrderProcessing.BusinessRule.Tests
         [TestMethod]
         public void UpgradeMembershipProcessor_Process_ShouldNotProcessTheOrder_WhenOrderIsForOtherThanMembership()
         {
-            var membershipManagerMock = new Mock<IMembershipManager>();
+            var membershipManagerMock = new Mock<MembershipManager>();
             membershipManagerMock.Setup(a => a.Activate(It.IsAny<MembershipDto>()));
 
-            var emailMock = new Mock<IEmailHandler>();
+            var emailMock = new Mock<EmailHandler>();
             emailMock.Setup(a => a.SendEmail(It.IsAny<EmailDto>()));
 
             var processor = new UpgradeMembershipProcessor(membershipManagerMock.Object, emailMock.Object);
@@ -42,10 +42,10 @@ namespace OrderProcessing.BusinessRule.Tests
         [TestMethod]
         public void UpgradeMembershipProcessor_Process_ShouldProcessTheOrder_WhenOrderIsForMembership()
         {
-            var membershipManagerMock = new Mock<IMembershipManager>();
+            var membershipManagerMock = new Mock<MembershipManager>();
             membershipManagerMock.Setup(a => a.Activate(It.IsAny<MembershipDto>()));
 
-            var emailMock = new Mock<IEmailHandler>();
+            var emailMock = new Mock<EmailHandler>();
             emailMock.Setup(a => a.SendEmail(It.IsAny<EmailDto>()));
 
             var processor = new UpgradeMembershipProcessor(membershipManagerMock.Object, emailMock.Object);
@@ -71,10 +71,10 @@ namespace OrderProcessing.BusinessRule.Tests
         [TestMethod]
         public void UpgradeMembershipProcessor_Process_ShouldUpgradeMembership_WhenOrderIsForMembership()
         {
-            var membershipManagerMock = new Mock<IMembershipManager>();
+            var membershipManagerMock = new Mock<MembershipManager>();
             membershipManagerMock.Setup(a => a.Activate(It.IsAny<MembershipDto>()));
 
-            var emailMock = new Mock<IEmailHandler>();
+            var emailMock = new Mock<EmailHandler>();
             emailMock.Setup(a => a.SendEmail(It.IsAny<EmailDto>()));
 
             var processor = new UpgradeMembershipProcessor(membershipManagerMock.Object, emailMock.Object);
@@ -100,10 +100,10 @@ namespace OrderProcessing.BusinessRule.Tests
         [TestMethod]
         public void UpgradeMembershipProcessor_Process_ShouldSendEmailToOwner_WhenOrderIsForMembership()
         {
-            var membershipManagerMock = new Mock<IMembershipManager>();
+            var membershipManagerMock = new Mock<MembershipManager>();
             membershipManagerMock.Setup(a => a.Activate(It.IsAny<MembershipDto>()));
 
-            var emailMock = new Mock<IEmailHandler>();
+            var emailMock = new Mock<EmailHandler>();
             emailMock.Setup(a => a.SendEmail(It.IsAny<EmailDto>()));
 
             var processor = new UpgradeMembershipProcessor(membershipManagerMock.Object, emailMock.Object);

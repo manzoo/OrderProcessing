@@ -13,7 +13,7 @@ namespace OrderProcessing.BusinessRule.Tests
         [TestMethod]
         public void MembershipProcessor_Process_ShouldNotProcessTheOrder_WhenOrderIsForOtherThanMembership()
         {
-            var membershipManagerMock = new Mock<IMembershipManager>();
+            var membershipManagerMock = new Mock<MembershipManager>();
             var processor = new MembershipProcessor(membershipManagerMock.Object);
 
             var order = new OrderDto
@@ -37,7 +37,7 @@ namespace OrderProcessing.BusinessRule.Tests
         [TestMethod]
         public void MembershipProcessor_Process_ShouldProcessTheOrder_WhenOrderIsForMembership()
         {
-            var membershipManagerMock = new Mock<IMembershipManager>();
+            var membershipManagerMock = new Mock<MembershipManager>();
             var processor = new MembershipProcessor(membershipManagerMock.Object);
 
             var order = new OrderDto
@@ -61,7 +61,7 @@ namespace OrderProcessing.BusinessRule.Tests
         [TestMethod]
         public void MembershipProcessor_Process_ShouldActivateMembership_WhenOrderIsForMembership()
         {
-            var membershipManagerMock = new Mock<IMembershipManager>();
+            var membershipManagerMock = new Mock<MembershipManager>();
             membershipManagerMock.Setup(a => a.Activate(It.IsAny<MembershipDto>()));
 
             var processor = new MembershipProcessor(membershipManagerMock.Object);

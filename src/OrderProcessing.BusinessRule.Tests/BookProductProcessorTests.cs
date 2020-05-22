@@ -14,7 +14,7 @@ namespace OrderProcessing.BusinessRule.Tests
         public void BookProcessor_Process_ShouldNotProcessTheOrder_WhenOrderIsForOtherThanBook()
         {
             var printerMock = new Mock<IPrinter>();
-            var paymentMock = new Mock<IPaymentManager>();
+            var paymentMock = new Mock<PaymentManager>();
             var processor = new BookProcessor(printerMock.Object, paymentMock.Object);
 
             var order = new OrderDto
@@ -38,7 +38,7 @@ namespace OrderProcessing.BusinessRule.Tests
         public void BookProcessor_Process_ShouldProcessTheOrder_WhenOrderIsForBook()
         {
             var printerMock = new Mock<IPrinter>();
-            var paymentMock = new Mock<IPaymentManager>();
+            var paymentMock = new Mock<PaymentManager>();
             var processor = new BookProcessor(printerMock.Object, paymentMock.Object);
 
             var order = new OrderDto
@@ -65,7 +65,7 @@ namespace OrderProcessing.BusinessRule.Tests
             var printerMock = new Mock<IPrinter>();
             printerMock.Setup(a => a.Print(It.IsAny<string>()));
 
-            var paymentMock = new Mock<IPaymentManager>();
+            var paymentMock = new Mock<PaymentManager>();
             var processor = new BookProcessor(printerMock.Object, paymentMock.Object);
 
             var order = new OrderDto
@@ -91,7 +91,7 @@ namespace OrderProcessing.BusinessRule.Tests
             var printerMock = new Mock<IPrinter>();
             printerMock.Setup(a => a.Print(It.IsAny<string>()));
 
-            var paymentMock = new Mock<IPaymentManager>();
+            var paymentMock = new Mock<PaymentManager>();
             paymentMock.Setup(a => a.Pay(It.IsAny<PaymentDto>()));
             var processor = new BookProcessor(printerMock.Object, paymentMock.Object);
 

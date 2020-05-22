@@ -6,9 +6,9 @@ namespace OrderProcessing.BusinessRule.Implementations
     public class BookProcessor: BaseProductProcessor
     {
         private readonly IPrinter _printer;
-        private readonly IPaymentManager _payment;
+        private readonly PaymentManager _payment;
 
-        public BookProcessor(IPrinter printer, IPaymentManager payment)
+        public BookProcessor(IPrinter printer, PaymentManager payment)
         {
             _printer = printer;
             _payment = payment;

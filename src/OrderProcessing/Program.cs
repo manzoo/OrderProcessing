@@ -25,11 +25,12 @@ namespace OrderProcessing
 
             var orderStatus = OrderStatus.Pending;
 
-            if(order.ProductType == ProductType.Physical)
-            {
-                orderStatus = new PhysicalProductProcessor(new ConsolePrinter()).Process(order);
-            }
+            Console.WriteLine($"Order is received for item { order.ProductType}");
+            Console.WriteLine($"***************Processing starts****************");
 
+            var 
+
+            Console.WriteLine($"***************Processing ends****************");
         }
     }
 }
