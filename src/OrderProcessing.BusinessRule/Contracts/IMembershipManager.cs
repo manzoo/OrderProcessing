@@ -6,6 +6,6 @@ namespace OrderProcessing.BusinessRule.Contracts
     {
         void Activate(MembershipDto membership);
 
-        void upgrade(MembershipDto membership);
+        void Upgrade(MembershipDto membership);
     }
 }
